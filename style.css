@@ -1,0 +1,24 @@
+:root {
+    --bgr: #171717;
+    --acnt: #f15a25;
+    --txt: #f0f8ff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    font-family: 'Garamond';
+    color: var(--txt);
+    background-color: var(--bgr);
+}
+
+h2 span {
+    color: var(--acnt);
+}
+
+canvas {
+    margin: 0.5rem 0;
+}
