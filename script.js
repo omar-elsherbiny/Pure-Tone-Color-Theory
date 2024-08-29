@@ -22,14 +22,22 @@ vectorInputs.forEach(vectorInput => {
     });
     vectorInput.addEventListener('input', (event) => {
         vectorInput.style.width = ((vectorInput.value.length + 1) * 8) + 'px';
+        updateAllGraphs();
     });
 });
+
+for (let i = 1; i <= paramList.length; i++) {
+    ['A', 'B', 'C', 'D'].forEach(param => {
+        setInputVal(param + i, paramList[i - 1][param]);
+    })
+}
 
 document.addEventListener('mousemove', (event) => {
     if (draggingInput != null) {
         const deltaX = event.clientX - initialX;
         draggingInput.value = initialVal + parseFloat(rangeLerp(deltaX, -10, 10, -0.1, 0.1, false, 3));
-        draggingInput.value = parseFloat(draggingInput.value).toFixed(2)
+        draggingInput.value = parseFloat(draggingInput.value).toFixed(2);
+        updateAllGraphs();
     }
 });
 
@@ -100,31 +108,49 @@ function getHSL(x, paramList) {
     return `hsl(${hue}deg, ${saturation}%, ${lightness}%)`;
 }
 
-updateGraph(
-    rgbGraphCanvas,
-    [{
-        func: (x) => { return colorFunc(x, paramList[0]) },
-        color: (x) => { return 'rgb(255, 20, 20)' }
-    }, {
-        func: (x) => { return colorFunc(x, paramList[1]) },
-        color: (x) => { return 'rgb(20, 255, 20)' }
-    }, {
-        func: (x) => { return colorFunc(x, paramList[2]) },
-        color: (x) => { return 'rgb(20, 20, 255)' }
-    }]
-)
-updateGradient(rgbCanvas, getRGB);
-updateGraph(
-    hslGraphCanvas,
-    [{
-        func: (x) => { return colorFunc(x, paramList[0]) },
-        color: (x) => { return `hsl(${360 * colorFunc(x, paramList[0])}deg, 100%, 50%)` }
-    }, {
-        func: (x) => { return colorFunc(x, paramList[1]) },
-        color: (x) => { return `hsl(0deg, ${100 * colorFunc(x, paramList[1])}%, 50%)` }
-    }, {
-        func: (x) => { return colorFunc(x, paramList[2]) },
-        color: (x) => { return `hsl(180deg, 100%, ${100 * colorFunc(x, paramList[2])}%)` }
-    }]
-)
-updateGradient(hslCanvas, getHSL);
+function getInputVal(code) {
+    return parseFloat(document.getElementById('input-' + code).value)
+}
+
+function setInputVal(code, val) {
+    document.getElementById('input-' + code).value = val;
+}
+
+function updateAllGraphs() {
+    paramList = [
+        { A: getInputVal('A1'), B: getInputVal('B1'), C: getInputVal('C1'), D: getInputVal('D1') },
+        { A: getInputVal('A2'), B: getInputVal('B2'), C: getInputVal('C2'), D: getInputVal('D2') },
+        { A: getInputVal('A3'), B: getInputVal('B3'), C: getInputVal('C3'), D: getInputVal('D3') },
+    ];
+
+    updateGraph(
+        rgbGraphCanvas,
+        [{
+            func: (x) => { return colorFunc(x, paramList[0]) },
+            color: (x) => { return 'rgb(255, 20, 20)' }
+        }, {
+            func: (x) => { return colorFunc(x, paramList[1]) },
+            color: (x) => { return 'rgb(20, 255, 20)' }
+        }, {
+            func: (x) => { return colorFunc(x, paramList[2]) },
+            color: (x) => { return 'rgb(20, 20, 255)' }
+        }]
+    )
+    updateGradient(rgbCanvas, getRGB);
+    updateGraph(
+        hslGraphCanvas,
+        [{
+            func: (x) => { return colorFunc(x, paramList[0]) },
+            color: (x) => { return `hsl(${360 * colorFunc(x, paramList[0])}deg, 100%, 50%)` }
+        }, {
+            func: (x) => { return colorFunc(x, paramList[1]) },
+            color: (x) => { return `hsl(0deg, ${100 * colorFunc(x, paramList[1])}%, 50%)` }
+        }, {
+            func: (x) => { return colorFunc(x, paramList[2]) },
+            color: (x) => { return `hsl(180deg, 100%, ${100 * colorFunc(x, paramList[2])}%)` }
+        }]
+    )
+    updateGradient(hslCanvas, getHSL);
+}
+
+updateAllGraphs()
