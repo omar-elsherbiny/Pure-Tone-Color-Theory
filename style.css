@@ -37,7 +37,7 @@ canvas {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 90%;
+    border-bottom: 2pt solid var(--acnt);
 }
 
 .vector {
@@ -60,6 +60,7 @@ canvas {
     outline: none;
     border: none;
     text-align: center;
+    cursor: n-resize;
 }
 
 .vector-inputs input:nth-child(1) {
@@ -72,4 +73,60 @@ canvas {
 
 .vector-inputs input:nth-child(3) {
     color: #0000e0;
+}
+
+#rgb_label {
+    text-align: center;
+    font-size: 18pt;
+    text-decoration: underline;
+    grid-area: rgb_label;
+}
+
+#rgb_graph_canvas {
+    border-left: 2pt solid var(--acnt);
+    border-bottom: 2pt solid var(--acnt);
+    grid-area: rgb_graph;
+}
+
+#rgb_canvas {
+    grid-area: rgb_canvas;
+}
+
+
+#hsl_label {
+    text-align: center;
+    font-size: 18pt;
+    text-decoration: underline;
+    grid-area: hsl_label;
+}
+
+#hsl_graph_canvas {
+    border-left: 2pt solid var(--acnt);
+    border-bottom: 2pt solid var(--acnt);
+    grid-area: hsl_graph;
+}
+
+#hsl_canvas {
+    grid-area: hsl_canvas;
+}
+
+.canvas-cointainers {
+    display: grid;
+    grid-template-areas:
+        'rgb_label hsl_label'
+        'rgb_graph hsl_graph'
+        'rgb_canvas hsl_canvas';
+    gap: 0.5rem 2rem;
+}
+
+@media screen and (max-width: 669px) {
+    .canvas-cointainers {
+        grid-template-areas:
+            'rgb_label'
+            'rgb_graph'
+            'rgb_canvas'
+            'hsl_label'
+            'hsl_graph'
+            'hsl_canvas';
+    }
 }

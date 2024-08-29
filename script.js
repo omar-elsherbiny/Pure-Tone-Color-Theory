@@ -17,7 +17,7 @@ let initialVal;
 vectorInputs.forEach(vectorInput => {
     vectorInput.addEventListener('mousedown', (event) => {
         draggingInput = vectorInput;
-        initialX = event.clientX;
+        initialY = event.clientY;
         initialVal = draggingInput.value == '' ? 0 : parseFloat(draggingInput.value);
     });
     vectorInput.addEventListener('input', (event) => {
@@ -34,7 +34,7 @@ for (let i = 1; i <= paramList.length; i++) {
 
 document.addEventListener('mousemove', (event) => {
     if (draggingInput != null) {
-        const deltaX = event.clientX - initialX;
+        const deltaX = initialY - event.clientY;
         draggingInput.value = initialVal + parseFloat(rangeLerp(deltaX, -10, 10, -0.1, 0.1, false, 3));
         draggingInput.value = parseFloat(draggingInput.value).toFixed(2);
         updateAllGraphs();
