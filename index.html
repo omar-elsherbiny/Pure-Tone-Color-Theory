@@ -11,6 +11,15 @@
 
 <body>
     <h2>color(x) = <span>A</span> + <span>B</span> cos(2π(<span>C</span>x + <span>D</span>))</h2>
+    <div class="vector">
+        <h1>A=(</h1>
+        <div class="vector-inputs">
+            <input type="number" step="0.1" oninput="this.style.width = ((this.value.length + 1) * 8) + 'px';">
+            <input type="number" step="0.1" oninput="this.style.width = ((this.value.length + 1) * 8) + 'px';">
+            <input type="number" step="0.1" oninput="this.style.width = ((this.value.length + 1) * 8) + 'px';">
+        </div>
+        <h1>)</h1>
+    </div>
     <canvas id="rgb_graph_canvas"></canvas>
     <canvas id="rgb_canvas"></canvas>
     <canvas id="hsl_graph_canvas"></canvas>

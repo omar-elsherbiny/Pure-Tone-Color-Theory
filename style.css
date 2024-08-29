@@ -4,6 +4,16 @@
     --txt: #f0f8ff;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -21,4 +31,37 @@ h2 span {
 
 canvas {
     margin: 0.5rem 0;
+}
+
+.vector {
+    display: inline-block;
+    position: relative;
+    display: flex;
+}
+
+.vector-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vector-inputs input {
+    width: 2rem;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+
+.vector-inputs input:nth-child(1) {
+    color: #e00000;
+}
+
+.vector-inputs input:nth-child(2) {
+    color: #00e000;
+}
+
+.vector-inputs input:nth-child(3) {
+    color: #0000e0;
 }

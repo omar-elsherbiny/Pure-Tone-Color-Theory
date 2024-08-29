@@ -2,6 +2,7 @@ const rgbGraphCanvas = document.getElementById('rgb_graph_canvas');
 const rgbCanvas = document.getElementById('rgb_canvas');
 const hslGraphCanvas = document.getElementById('hsl_graph_canvas');
 const hslCanvas = document.getElementById('hsl_canvas');
+const vectorInputs = document.querySelectorAll('.vector-inputs input');
 
 let domain = 1;
 let paramList = [
@@ -9,6 +10,26 @@ let paramList = [
     { A: 0.5, B: 0.4, C: 1, D: 0.24 },
     { A: 0.4, B: 0.22, C: 0.93, D: 0.25 },
 ];
+let isDragging = false;
+let initialX;
+
+// vectorInputs.forEach(vectorInput => {
+//     vectorInput.addEventListener('mousedown', (event) => {
+//         isDragging = true;
+//         initialX = event.clientX;
+//     });
+
+//     vectorInput.addEventListener('mousemove', (event) => {
+//         if (isDragging) {
+//             const deltaX = event.clientX - initialX;
+//             console.log(deltaX);
+//         }
+//     });
+
+//     vectorInput.addEventListener('mouseup', () => {
+//         isDragging = false;
+//     });
+// });
 
 function rangeLerp(
     inputValue,
