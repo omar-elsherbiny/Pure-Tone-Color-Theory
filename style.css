@@ -33,10 +33,18 @@ canvas {
     margin: 0.5rem 0;
 }
 
+.vectors {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
 .vector {
     display: inline-block;
     position: relative;
     display: flex;
+    margin: 0 0.5rem;
 }
 
 .vector-inputs {

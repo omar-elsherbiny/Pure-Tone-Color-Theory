@@ -20,16 +20,21 @@ vectorInputs.forEach(vectorInput => {
         initialX = event.clientX;
         initialVal = draggingInput.value == '' ? 0 : parseFloat(draggingInput.value);
     });
+    vectorInput.addEventListener('input', (event) => {
+        vectorInput.style.width = ((vectorInput.value.length + 1) * 8) + 'px';
+    });
 });
 
 document.addEventListener('mousemove', (event) => {
     if (draggingInput != null) {
         const deltaX = event.clientX - initialX;
         draggingInput.value = initialVal + parseFloat(rangeLerp(deltaX, -10, 10, -0.1, 0.1, false, 3));
+        draggingInput.value = parseFloat(draggingInput.value).toFixed(2)
     }
 });
 
 document.addEventListener('mouseup', () => {
+    draggingInput.style.width = ((draggingInput.value.length + 1) * 8) + 'px';
     draggingInput = null;
 });
 
